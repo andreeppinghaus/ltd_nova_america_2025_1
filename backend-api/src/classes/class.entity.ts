@@ -7,7 +7,6 @@ import {
   OneToMany,
 } from 'typeorm';
 import { Unit } from '../units/unit.entity';
-import { User } from '../users/user.entity';
 import { Attendance } from '../attendances/attendance.entity';
 
 @Entity()
@@ -34,9 +33,8 @@ export class Class {
   @JoinColumn({ name: 'unit_id' })
   unit: Unit;
 
-  @ManyToOne(() => User)
-  @JoinColumn({ name: 'teacher_id' })
-  teacher: User;
+  @Column()
+  teacher_id: number;
 
   @OneToMany(() => Attendance, (attendance) => attendance.class)
   attendances: Attendance[];

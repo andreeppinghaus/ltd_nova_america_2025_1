@@ -1,29 +1,41 @@
-version: '3'
 services:
-  postgres:
+  postgres-api:
     image: postgres:latest
-    container_name: postgres_db
+    container_name: postgres-api
     restart: always
     environment:
-      POSTGRES_USER: nest
-      POSTGRES_PASSWORD: est@ciO_20.25
-      POSTGRES_DB: siscalf
+      POSTGRES_USER: ${API_PG_USER}
+      POSTGRES_PASSWORD: ${API_PG_PASS}
+      POSTGRES_DB: ${API_PG_DB}
     ports:
       - "5432:5432"
     networks:
       - my-network
-
     volumes:
-      - postgres-data:/var/lib/postgresql/data_ltd
-    # - ./database/migrations:/docker-entrypoint-initdb.d 
+      - api-data:/var/lib/postgresql/data_ltd
+
+  postgres-auth:
+    image: postgres:latest
+    container_name: postgres-auth
+    restart: always
+    environment:
+      POSTGRES_USER: ${AUTH_PG_USER}
+      POSTGRES_PASSWORD: ${AUTH_PG_PASS}
+      POSTGRES_DB: ${AUTH_PG_DB}
+    ports:
+      - "5433:5432"
+    networks:
+      - my-network
+    volumes:
+      - auth-data:/var/lib/postgresql/data_ltd
 
   backend-api:
     build: ./backend-api
     container_name: backend-api
     environment:
-      DATABASE_HOST: postgres
+      DATABASE_HOST: postgres-api
     depends_on:
-      - postgres
+      - postgres-api
     ports:
       - "3001:3000"
     volumes:
@@ -35,8 +47,10 @@ services:
   backend-authentication:
     build: ./backend-authentication
     container_name: backend-authentication
+    environment:
+      DATABASE_HOST: postgres-auth
     depends_on:
-      - postgres
+      - postgres-auth
     ports:
       - "3002:3000"
     volumes:
@@ -63,7 +77,8 @@ networks:
   my-network:
 
 volumes:
-  postgres-data:
+  auth-data:
+  api-data:
 
 # volumes:
 #   shared-volume:

@@ -2,11 +2,9 @@ import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
-  OneToMany,
   CreateDateColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Attendance } from '../attendances/attendance.entity';
 import { Role } from '../enums/roles.enum';
 
 @Entity()
@@ -35,7 +33,4 @@ export class User {
     default: Role.STUDENT,
   })
   role: Role;
-
-  @OneToMany(() => Attendance, (attendance) => attendance.student)
-  attendances: Attendance[];
 }

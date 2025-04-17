@@ -1,9 +1,8 @@
-import { Injectable, OnModuleInit } from '@nestjs/common';
-import { UsersService } from './users/users.service';
+import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class AppService {
-  constructor(private readonly userService: UsersService) {}
+  constructor() {}
 
   getHello(): string {
     return 'Hello World! backend-api';

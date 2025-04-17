@@ -4,18 +4,20 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './user.entity';
 import { Repository } from 'typeorm';
 import { Inject } from '@nestjs/common';
-import { Role } from 'src/enums/roles.enum';
+import { Role } from '../enums/roles.enum';
 
 @Injectable()
-export class UsersService implements OnModuleInit{
+export class UsersService implements OnModuleInit {
   constructor(
     @Inject('USER_REPOSITORY')
     private userRepository: Repository<User>,
   ) {}
 
   async onModuleInit() {
-    const user = await this.createExampleUser();
-    console.log('Created user:', user);
+    const count = await this.userRepository.count();
+    if (count === 0) {
+      await this.createExampleUser();
+    }
   }
 
   async create(data: CreateUserDto): Promise<User> {
