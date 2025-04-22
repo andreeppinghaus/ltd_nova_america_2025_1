@@ -15,7 +15,7 @@ export abstract class HashingService {
      * compare('senha', '1adsadsadada')
      * @param {string} password senha do usuário
      * @param {string}passwordHash hash da senha
-     * @returns verdadeiro ou falso
+     * @returns verdadeiro===logado ou falso===senha errada
      */
     abstract compare(password: string, passwordHash: string): Promise<boolean>;
 

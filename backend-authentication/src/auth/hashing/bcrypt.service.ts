@@ -9,7 +9,7 @@ export class BcryptService extends HashingService {
     }
 
     async compare(password: string, passwordHash: string): Promise<boolean> {
-        return false;
+        return bcrypt.compare(password, passwordHash);
     }
 
 }
