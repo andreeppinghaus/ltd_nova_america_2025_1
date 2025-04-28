@@ -1,10 +1,15 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { CreateAuthDto } from './dto/create-auth.dto';
 import { UpdateAuthDto } from './dto/update-auth.dto';
 import { LoginDto } from './dto/login.dto';
+import { UsersService } from 'src/users/users.service';
 
 @Injectable()
 export class AuthService {
+  constructor(
+    @Inject()
+    private readonly usersService: UsersService
+  ) { }
   create(createAuthDto: CreateAuthDto) {
     return 'This action adds a new auth';
   }
@@ -25,7 +30,19 @@ export class AuthService {
     return `This action removes a #${id} auth`;
   }
 
+  //--------------------//
+
   login(loginDto: LoginDto) {
-    return loginDto;
+
+    let user;
+
+    user = this.usersService.findByEmail(loginDto.email);
+
+    if (user) {
+      console.log(user.email);
+      return loginDto;
+    }
+
+
   }
 }

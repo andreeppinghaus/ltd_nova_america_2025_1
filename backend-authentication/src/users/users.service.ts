@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException, OnModuleInit } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, NotFoundException, OnModuleInit } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './user.entity';
@@ -27,8 +27,17 @@ export class UsersService implements OnModuleInit {
     //falta controle de erros para um usuario duplicado
     data.password = await this.hashingService.hash(data.password);
 
+
     const user = this.userRepository.create(data);
     return this.userRepository.save(user);
+
+    // }catch (e) {
+   // console.log(e);
+    // if (e.code=='23505') {
+    //   throw new NotFoundException(`(email)=${data.email} already exists.`);
+    // }
+    // return  data;
+    // }
   }
 
   async findAll(): Promise<User[]> {
@@ -73,7 +82,15 @@ export class UsersService implements OnModuleInit {
 
     return this.userRepository.save(userUpdate);
 
-    return `This action updates a #${id} user`;
+  }
+
+  async findByEmail(email: string): Promise<User> {
+    console.log("findbyemail"+email);
+    const user = await this.userRepository.findOneBy({ email });
+    if (!user) {
+      throw new HttpException(`User with ${email} not found`, HttpStatus.NOT_FOUND);
+    }
+    return user;
   }
 
   remove(id: number) {
