@@ -4,9 +4,9 @@ import { ApiProperty } from '@nestjs/swagger';
 import { ClassDayStatus } from 'src/enums/class-day-status.enum';
 
 export class UpdateClassDayDto extends PartialType(CreateClassDayDto) {
-  @ApiProperty()
-  subject?: string;
+  @ApiProperty({ required: false })
+  content?: string;
 
-  @ApiProperty({ enum: ClassDayStatus })
+  @ApiProperty({ enum: ClassDayStatus, required: false })
   status?: ClassDayStatus;
 }

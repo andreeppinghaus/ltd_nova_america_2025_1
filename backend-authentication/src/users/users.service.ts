@@ -3,13 +3,13 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './user.entity';
 import { Repository } from 'typeorm';
-import { Inject } from '@nestjs/common';
 import { Role } from '../enums/roles.enum';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class UsersService implements OnModuleInit {
   constructor(
-    @Inject('USER_REPOSITORY')
+    @InjectRepository(User)
     private userRepository: Repository<User>,
   ) {}
 
@@ -29,10 +29,10 @@ export class UsersService implements OnModuleInit {
     return this.userRepository.find();
   }
 
-  async findOne(id: number): Promise<User> {
-    const user = await this.userRepository.findOneBy({ id });
+  async findOne(email: string): Promise<User> {
+    const user = await this.userRepository.findOneBy({ email });
     if (!user) {
-      throw new Error(`User with id ${id} not found`);
+      throw new Error(`Usuário não encontrado`);
     }
     return user;
   }

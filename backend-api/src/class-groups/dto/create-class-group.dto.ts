@@ -2,24 +2,24 @@ import { ApiProperty } from '@nestjs/swagger';
 import { Length } from 'class-validator';
 
 export class CreateClassGroupDto {
-  @ApiProperty()
-  start_date: Date;
+  @ApiProperty({ type: String, format: 'date' })
+  start_date: string;
 
-  @ApiProperty()
-  end_date: Date;
+  @ApiProperty({ type: String, format: 'date' })
+  end_date: string;
 
-  @ApiProperty()
-  start_time: Date;
+  @ApiProperty({ type: String, format: 'time', example: '08:00:00' })
+  start_time: string;
 
-  @ApiProperty()
-  end_time: Date;
+  @ApiProperty({ type: String, format: 'time', example: '08:00:00' })
+  end_time: string;
 
   @ApiProperty()
   @Length(7)
   week_day: string;
 
   @ApiProperty()
-  unit: string;
+  unit_id: number;
 
   @ApiProperty()
   teacher_id: number;

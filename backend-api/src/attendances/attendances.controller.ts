@@ -11,22 +11,20 @@ import { AttendancesService } from './attendances.service';
 import { CreateAttendanceDto } from './dto/create-attendance.dto';
 import { UpdateAttendanceDto } from './dto/update-attendance.dto';
 import { ApiOperation, ApiQuery } from '@nestjs/swagger';
+import { API_MESSAGES } from '../app.messages';
 
 @Controller('attendances')
 export class AttendancesController {
   constructor(private readonly attendancesService: AttendancesService) {}
 
   @Post()
-  @ApiOperation({ summary: 'Cria uma presença' })
+  @ApiOperation({ summary: API_MESSAGES.CONTROLLER.ATTENDANCES.CREATE })
   create(@Body() createAttendanceDto: CreateAttendanceDto) {
     return this.attendancesService.create(createAttendanceDto);
   }
 
   @Get()
-  @ApiOperation({
-    summary:
-      'Retorna as presenças de acordo com o CPF do aluno e/ou dia de aula',
-  })
+  @ApiOperation({ summary: API_MESSAGES.CONTROLLER.ATTENDANCES.GET })
   @ApiQuery({ name: 'cpf', required: false, type: String })
   @ApiQuery({ name: 'class_day', required: false, type: String })
   findOne(@Query('cpf') cpf: string, @Query('class_day') class_day: string) {
@@ -42,24 +40,24 @@ export class AttendancesController {
     } else if (cpf && !class_day) {
       return this.attendancesService.findByStudentId(+cpf);
     } else {
-      return 'Entrada inválida. Insira CPF ou data da aula.';
+      return API_MESSAGES.ERRORS.INVALID_INPUT;
     }
   }
 
   @Patch()
-  @ApiOperation({ summary: 'Atualiza uma presença' })
+  @ApiOperation({ summary: API_MESSAGES.CONTROLLER.ATTENDANCES.UPDATE })
   @ApiQuery({ name: 'cpf', required: true, type: String })
   @ApiQuery({ name: 'class_day', required: true, type: String })
   update(
     @Query('cpf') cpf: string,
     @Query('class_day') class_day: string,
-    @Body() updateAttendanceDto: UpdateAttendanceDto,
+    @Query() updateAttendanceDto: UpdateAttendanceDto,
   ) {
     return this.attendancesService.update(+cpf, updateAttendanceDto);
   }
 
   @Delete()
-  @ApiOperation({ summary: 'Deleta uma presença' })
+  @ApiOperation({ summary: API_MESSAGES.CONTROLLER.ATTENDANCES.DELETE })
   remove(@Query('id') id: string) {
     return this.attendancesService.remove(+id);
   }

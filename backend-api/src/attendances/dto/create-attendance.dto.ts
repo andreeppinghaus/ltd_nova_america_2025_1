@@ -3,13 +3,10 @@ import { AttendanceStatus } from 'src/enums/attendance-status.enum';
 
 export class CreateAttendanceDto {
   @ApiProperty()
-  student_id: number;
+  student_cpf: number;
 
   @ApiProperty()
-  class_group_id: number;
-
-  @ApiProperty()
-  attendance_date: Date;
+  class_day_id: number;
 
   @ApiProperty({ enum: AttendanceStatus })
   status: AttendanceStatus;

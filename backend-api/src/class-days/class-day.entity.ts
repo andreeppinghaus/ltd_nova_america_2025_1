@@ -13,15 +13,18 @@ export class ClassDay {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Column()
+  class_group_id: number;
+
   @ManyToOne(() => ClassGroup)
   @JoinColumn({ name: 'class_group_id' })
-  class_group_id: number;
+  class_group: ClassGroup;
 
   @Column('date')
   date: Date;
 
   @Column()
-  subject: string;
+  content: string;
 
   @Column()
   status: ClassDayStatus;

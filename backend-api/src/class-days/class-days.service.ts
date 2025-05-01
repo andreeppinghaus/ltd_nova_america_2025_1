@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { ClassDay } from './class-day.entity';
 import { CreateClassDayDto } from './dto/create-class-day.dto';
 import { UpdateClassDayDto } from './dto/update-class-day.dto';
+import { GetClassesQueryDto } from './dto/get-class-day.dto';
 
 @Injectable()
 export class ClassDaysService {
@@ -17,7 +18,35 @@ export class ClassDaysService {
     return this.classDayRepo.save(classDay);
   }
 
-  findAll() {
+  async findClasses(filters: GetClassesQueryDto): Promise<ClassDay[]> {
+    const query = this.classDayRepo
+      .createQueryBuilder('class_day')
+      .select([
+        'class_day.id',
+        'class_day.date',
+        'class_day.content',
+        'class_day.status',
+        'class_day.class_group_id',
+      ]);
+
+    if (filters.id) {
+      query.andWhere('class_day.id = :id', { id: filters.id });
+    }
+
+    if (filters.class_group_id) {
+      query.andWhere('class_day.class_group_id = :class_group_id', {
+        class_group_id: filters.class_group_id,
+      });
+    }
+
+    if (filters.date) {
+      query.andWhere('class_day.date = :date', { date: filters.date });
+    }
+
+    return query.getMany();
+  }
+
+  /*   findAll() {
     return this.classDayRepo.find();
   }
 
@@ -53,7 +82,7 @@ export class ClassDaysService {
         class_group_id: 'ASC',
       },
     });
-  }
+  } */
 
   update(id: number, updateClassDayDto: UpdateClassDayDto) {
     return this.classDayRepo.update(id, updateClassDayDto);

@@ -34,6 +34,9 @@ services:
     container_name: backend-api
     environment:
       DATABASE_HOST: postgres-api
+      API_PG_USER: ${API_PG_USER}
+      API_PG_PASS: ${API_PG_PASS}
+      API_PG_DB: ${API_PG_DB}
     depends_on:
       - postgres-api
     ports:
@@ -49,6 +52,10 @@ services:
     container_name: backend-authentication
     environment:
       DATABASE_HOST: postgres-auth
+      AUTH_PG_USER: ${AUTH_PG_USER}
+      AUTH_PG_PASS: ${AUTH_PG_PASS}
+      AUTH_PG_DB: ${AUTH_PG_DB}
+      JWT_SECRET: ${JWT_SECRET}
     depends_on:
       - postgres-auth
     ports:
@@ -79,11 +86,3 @@ networks:
 volumes:
   auth-data:
   api-data:
-
-# volumes:
-#   shared-volume:
-#     driver: local
-#     driver_opts:
-#       type: none
-#       device: in  
-#       o: bind

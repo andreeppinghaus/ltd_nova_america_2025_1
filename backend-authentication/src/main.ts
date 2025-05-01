@@ -13,4 +13,4 @@ bootstrap()
   })
   .catch((error) => {
     console.error('Erro iniciando o serviço de autenticação:', error);
-  } );
+  });

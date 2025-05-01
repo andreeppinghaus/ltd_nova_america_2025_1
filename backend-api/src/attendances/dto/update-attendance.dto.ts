@@ -4,6 +4,6 @@ import { ApiProperty } from '@nestjs/swagger';
 import { AttendanceStatus } from 'src/enums/attendance-status.enum';
 
 export class UpdateAttendanceDto extends PartialType(CreateAttendanceDto) {
-  @ApiProperty({ enum: AttendanceStatus })
+  @ApiProperty({ enum: AttendanceStatus, required: false })
   status?: AttendanceStatus;
 }

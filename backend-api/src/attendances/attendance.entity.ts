@@ -15,9 +15,15 @@ export class Attendance {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Column()
+  student_cpf: number;
+
   @ManyToOne(() => Student)
   @JoinColumn({ name: 'student_cpf', referencedColumnName: 'cpf' })
   student: Student;
+
+  @Column()
+  class_day_id: number;
 
   @ManyToOne(() => ClassDay)
   @JoinColumn({ name: 'class_day_id', referencedColumnName: 'id' })

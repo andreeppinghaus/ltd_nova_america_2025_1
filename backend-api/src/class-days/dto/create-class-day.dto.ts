@@ -5,8 +5,11 @@ export class CreateClassDayDto {
   @ApiProperty({ type: Number })
   class_group_id: number;
 
+  @ApiProperty({ type: String, format: 'date' })
+  date: string;
+
   @ApiProperty()
-  date: Date;
+  content: string;
 
   @ApiProperty({ enum: ClassDayStatus, default: ClassDayStatus.DRAFT })
   status: ClassDayStatus;

@@ -1,4 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Unit } from 'src/units/unit.entity';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
 
 @Entity('class_groups')
 export class ClassGroup {
@@ -11,17 +18,18 @@ export class ClassGroup {
   @Column('date')
   end_date: Date;
 
-  @Column('date')
-  start_time: Date;
+  @Column('time without time zone')
+  start_time: string;
 
-  @Column('date')
-  end_time: Date;
+  @Column('time without time zone')
+  end_time: string;
 
   @Column()
   week_day: string;
 
-  @Column()
-  unit: string;
+  @ManyToOne(() => Unit)
+  @JoinColumn({ name: 'unit_id' })
+  unit: Unit;
 
   @Column()
   teacher_id: number;
