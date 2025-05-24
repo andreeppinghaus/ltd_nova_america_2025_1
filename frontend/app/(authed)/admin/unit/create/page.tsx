@@ -1,8 +1,6 @@
+import { Button } from "@/lib/components/button";
+import { InputField } from "@/lib/components/input";
 import { twMerge } from "tailwind-merge";
-
-function InputField({ className, ...props }: React.InputHTMLAttributes<HTMLInputElement>) {
-  return <input className={twMerge(className, "bg-gray-300 text-black py-1 px-3 rounded-sm w-full text-lg")} {...props} />
-}
 
 export default function UnitCreatePage() {
   const onUnitCreate = async (form: FormData) => {
@@ -25,9 +23,9 @@ export default function UnitCreatePage() {
         <InputField name="name" id="name" type="text" placeholder="-" />
       </label>
 
-      <button type="submit" className="bg-black text-white px-5 py-1 mt-3">
+      <Button type="submit">
         Cadastrar
-      </button>
+      </Button>
     </form>
   )
 }

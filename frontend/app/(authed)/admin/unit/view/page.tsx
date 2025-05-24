@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/lib/components/button";
+import { InputField } from "@/lib/components/input";
 import { Unit } from "@/lib/schemas/unit";
 import { Endpoint } from "@/lib/services/endpoint";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -7,14 +9,9 @@ import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import { FormEvent, useCallback } from "react";
 import { twMerge } from "tailwind-merge";
 
-function InputField({ className, ...props }: React.InputHTMLAttributes<HTMLInputElement>) {
-  return <input className={twMerge(className, "bg-gray-300 text-black py-1 px-3 rounded-sm w-full text-lg")} {...props} />
-}
-
 const queryKey = ['units'];
 
 export default function ViewUnitPage() {
-
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -61,9 +58,9 @@ export default function ViewUnitPage() {
           <InputField name="id" id="id" placeholder="-" />
         </label>
 
-        <button type="submit" className="bg-black text-white px-5 py-1 mt-2">
+        <Button type="submit">
           Buscar
-        </button>
+        </Button>
       </form>
 
       <div className="w-full bg-gray-300 text-black p-5 min-h-50">
