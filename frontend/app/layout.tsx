@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import * as ReactQuery from "@/lib/config/react-query";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -23,7 +24,9 @@ export default function RootLayout({
       <body
         className={`${inter.className} antialiased`}
       >
-        {children}
+        <ReactQuery.Provider>
+          {children}
+        </ReactQuery.Provider>
       </body>
     </html>
   );
