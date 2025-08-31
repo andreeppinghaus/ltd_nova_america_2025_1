@@ -1,4 +1,5 @@
 import { Link } from "@/lib/components/link";
+import NextLink from "next/link";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <div className="flex flex-col flex-row justify-center h-screen">
-      <section className="flex-1 h-full flex flex-col items-center justify-center border-r-2">
+      <section className="flex-1 h-full flex flex-col items-center justify-center">
         <div id="left-panel-container" className="flex-5 flex flex-col items-left justify-center gap-y-2">
           <span className="px-12 py-5 border-2 my-4">Logo</span>
           
@@ -21,9 +22,9 @@ export default function HomePage() {
             <h2 className="font-bold">suamatricula@alunos.estacio.br</h2>
           </section>
           
-          <button className="bg-btn text-btn-content hover:bg-btn-hover hover:text-btn-hover-content text-white px-5 py-3 mt-3 mb-2 rounded-xl">
+          <NextLink href="/login" className="bg-btn text-btn-content hover:bg-btn-hover hover:text-btn-hover-content text-white text-center px-5 py-3 mt-3 mb-2 rounded-xl">
             Entrar
-          </button>
+          </NextLink>
           
           <Link href="#">Esqueci minha senha</Link>
         </div>
