@@ -1,10 +1,23 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Montserrat, Poppins } from "next/font/google";
 import "./globals.css";
 import * as ReactQuery from "@/lib/config/react-query";
 
 const inter = Inter({
   variable: "--font-inter",
+  preload: true,
+  subsets: ["latin"],
+})
+
+const poppins = Poppins({
+  weight: "600",
+  variable: "--font-poppins",
+  preload: false,
+  subsets: ["latin"],
+})
+
+const monserrat = Montserrat({
+  variable: "--font-monserrat",
   preload: true,
   subsets: ["latin"],
 })
@@ -22,7 +35,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} antialiased`}
+        className={`${inter.variable} ${poppins.variable} ${monserrat.variable} antialiased`}
       >
         <ReactQuery.Provider>
           {children}
