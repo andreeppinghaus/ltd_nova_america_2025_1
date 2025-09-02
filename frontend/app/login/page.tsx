@@ -12,6 +12,7 @@ export default function LoginPage() {
       
       // TODO: Implement login to backend
       void form;
+      throw redirect("/admin");
   }
 
   return (
