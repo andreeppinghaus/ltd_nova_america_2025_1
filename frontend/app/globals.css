@@ -8,8 +8,18 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  
+  --color-accent: rgb(194, 212, 255);
+  
+  --color-btn: rgb(20, 75, 200);
+  --color-btn-content: white;
+  --color-btn-hover: var(--color-accent);
+  --color-btn-hover-content: var(--color-btn);
+  
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-read: var(--font-inter);
+  --font-accent: var(--font-monserrat);
 }
 
 /* @media (prefers-color-scheme: dark) { */
@@ -24,3 +34,4 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
