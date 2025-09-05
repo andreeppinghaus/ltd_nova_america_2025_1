@@ -1,6 +1,7 @@
 import { Link } from "@/lib/components/link";
 import NextLink from "next/link";
 import { Metadata } from "next";
+import { Logo } from "@/lib/components/logo";
 
 export const metadata: Metadata = {
     title: "Página Principal",
@@ -12,7 +13,7 @@ export default function HomePage() {
     <div className="flex flex-col flex-row justify-center h-screen">
       <section className="flex-1 h-full flex flex-col items-center justify-center">
         <div id="left-panel-container" className="flex-5 flex flex-col items-left justify-center gap-y-2">
-          <span className="px-12 py-5 border-2 my-4">Logo</span>
+          <Logo />
           
           <p className="opacity-85">Olá.</p>
           <h1 className="text-3xl font-bold font-accent">Que bom ter você de<br /> volta!</h1>
