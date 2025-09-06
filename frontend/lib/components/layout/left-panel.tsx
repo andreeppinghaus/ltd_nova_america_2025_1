@@ -1,9 +1,8 @@
-import { HoverMenuItem } from "@/lib/components/hover-menu-item";
+import { HoverMenu, HoverMenuItem } from "@/lib/components/hover-menu";
 import { AttendIcon } from "@/lib/components/icons/attend";
 import { ClassIcon } from "@/lib/components/icons/class";
 import { UserIcon } from "@/lib/components/icons/user";
 import { UnitIcon } from "@/lib/components/icons/unit";
-import NextLink from "next/link";
 
 type LeftPanelProps = {
   // user: User
@@ -12,25 +11,25 @@ type LeftPanelProps = {
 export function LeftPanel({}: LeftPanelProps) {
   return (
     <nav id="left-panel" className="h-full px-1 flex flex-col">
-      <HoverMenuItem title="Unidade" icon={<UnitIcon />}>
-        <NextLink href="/unit/create">Cadastrar</NextLink>
-        <NextLink href="/unit/view">Consultar</NextLink>
-      </HoverMenuItem>
+      <HoverMenu title="Unidade" icon={<UnitIcon />}>
+        <HoverMenuItem href="/unit/create">Cadastrar</HoverMenuItem>
+        <HoverMenuItem href="/unit/view">Consultar</HoverMenuItem>
+      </HoverMenu>
       
-      <HoverMenuItem title="Turma" icon={<ClassIcon />}>
-        <NextLink href="/class/create">Cadastrar</NextLink>
-        <NextLink href="/class/view">Consultar</NextLink>
-      </HoverMenuItem>
+      <HoverMenu title="Turma" icon={<ClassIcon />}>
+        <HoverMenuItem href="/class/create">Cadastrar</HoverMenuItem>
+        <HoverMenuItem href="/class/view">Consultar</HoverMenuItem>
+      </HoverMenu>
       
-      <HoverMenuItem title="Usuário" icon={<UserIcon />}>
-        <NextLink href="/user/create">Cadastrar</NextLink>
-        <NextLink href="/user/view">Consultar</NextLink>
-      </HoverMenuItem>
+      <HoverMenu title="Usuário" icon={<UserIcon />}>
+        <HoverMenuItem href="/user/create">Cadastrar</HoverMenuItem>
+        <HoverMenuItem href="/user/view">Consultar</HoverMenuItem>
+      </HoverMenu>
       
-      <HoverMenuItem title="Presença" icon={<AttendIcon />}>
-        <NextLink href="/attend/create">Realizar</NextLink>
-        <NextLink href="/attend/view">Visualizar</NextLink>
-      </HoverMenuItem>
+      <HoverMenu title="Presença" icon={<AttendIcon />}>
+        <HoverMenuItem href="/attend/create">Realizar</HoverMenuItem>
+        <HoverMenuItem href="/attend/view">Visualizar</HoverMenuItem>
+      </HoverMenu>
     </nav>
   );
 }
