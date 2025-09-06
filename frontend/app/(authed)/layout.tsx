@@ -16,7 +16,7 @@ export default function UserLayout({ children }: PropsWithChildren) {
       <section className="h-full w-full flex flex-row gap-x-2">
         <LeftPanel />
         
-        <main className="w-full bg-gray-200 rounded-tl-2xl p-3">
+        <main className="w-full bg-background-main rounded-tl-2xl p-3">
           {children}
         </main>
       </section>
