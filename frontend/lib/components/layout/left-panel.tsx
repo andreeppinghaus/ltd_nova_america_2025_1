@@ -1,4 +1,5 @@
 import { HoverMenuItem } from "@/lib/components/hover-menu-item";
+import { AttendIcon } from "@/lib/components/icons/attend";
 import { ClassIcon } from "@/lib/components/icons/class";
 import { UserIcon } from "@/lib/components/icons/user";
 import { UnitIcon } from "@/lib/components/icons/unit";
@@ -24,6 +25,11 @@ export function LeftPanel({}: LeftPanelProps) {
       <HoverMenuItem title="Usuário" icon={<UserIcon />}>
         <NextLink href="/user/create">Cadastrar</NextLink>
         <NextLink href="/user/view">Consultar</NextLink>
+      </HoverMenuItem>
+      
+      <HoverMenuItem title="Presença" icon={<AttendIcon />}>
+        <NextLink href="/attend/create">Realizar</NextLink>
+        <NextLink href="/attend/view">Visualizar</NextLink>
       </HoverMenuItem>
     </nav>
   );
