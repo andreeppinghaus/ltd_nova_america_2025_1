@@ -1,3 +1,4 @@
+import { LabelledInput } from "@/lib/components/input";
 import { Logo } from "@/lib/components/logo";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
@@ -23,13 +24,8 @@ export default function LoginPage() {
     
         <h1 className="font-accent text-xl font-bold">Login</h1>
         
-        <label className="w-full">
-          <input className="w-full py-2 px-1 border-b-2 border-b-gray-400" placeholder="Email" type="email" name="email" id="email" />
-        </label>
-        
-        <label className="w-full">
-          <input className="w-full py-2 px-1 border-b-2 border-b-gray-400" placeholder="Senha" type="password" name="password" id="password" />
-        </label>
+        <LabelledInput placeholder="Email" type="email" name="email" id="email" />
+        <LabelledInput placeholder="Senha" type="password" name="password" id="password" />
         
         <button className="bg-btn text-btn-content w-full hover:bg-btn-hover hover:text-btn-hover-content text-white text-center px-5 py-3 mt-3 mb-2 rounded-xl" type="submit">
           Entrar
