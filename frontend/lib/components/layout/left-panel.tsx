@@ -10,7 +10,7 @@ type LeftPanelProps = {
 
 export function LeftPanel({}: LeftPanelProps) {
   return (
-    <nav id="left-panel" className="h-full px-1 flex flex-col">
+    <nav id="left-panel" className="h-full px-1 flex flex-col bg-background">
       <HoverMenu title="Unidade" icon={<UnitIcon />}>
         <HoverMenuItem href="/unit/create">Cadastrar</HoverMenuItem>
         <HoverMenuItem href="/unit/view">Consultar</HoverMenuItem>

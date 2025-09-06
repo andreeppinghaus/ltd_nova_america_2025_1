@@ -1,5 +1,6 @@
 import { LeftPanel } from "@/lib/components/layout/left-panel";
 import { UserHeader } from "@/lib/components/layout/user-header";
+import { TwoPanel } from "@/lib/components/two-panel";
 import { redirect } from "next/navigation";
 import { PropsWithChildren } from "react";
 
@@ -13,13 +14,7 @@ export default function UserLayout({ children }: PropsWithChildren) {
     <div className="h-screen w-full flex flex-col">
       <UserHeader />
 
-      <section className="h-full w-full flex flex-row gap-x-2">
-        <LeftPanel />
-        
-        <main className="w-full bg-background-main rounded-tl-2xl p-3">
-          {children}
-        </main>
-      </section>
+      <TwoPanel left={<LeftPanel />} right={children} />
     </div>
   )
 }
