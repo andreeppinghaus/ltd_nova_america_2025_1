@@ -1,21 +1,25 @@
+import { LeftPanel } from "@/lib/components/layout/left-panel";
+import { UserHeader } from "@/lib/components/layout/user-header";
+import { redirect } from "next/navigation";
 import { PropsWithChildren } from "react";
 
-export default function AuthedLayout({ children }: PropsWithChildren) {
+// TODO: Implement integration with backend
+const userIsLoggedIn = true;
+
+export default function UserLayout({ children }: PropsWithChildren) {
+  if (!userIsLoggedIn) throw redirect("/welcome");
+  
   return (
-    <>
-      <header className="flex flex-row justify-between py-3 px-5">
-        <section id="logo-sec" className="flex flex-row items-center gap-x-2">
-          <div className="size-10 rounded-full border-2 border-black"></div>
-          LOGO
-        </section>
+    <div className="h-screen w-full flex flex-col">
+      <UserHeader />
 
-        <section id="logged-user" className="flex flex-row items-center gap-x-2">
-          NOME
-          <div className="size-10 rounded-full border-2 border-black"></div>
-        </section>
-      </header>
-
-      {children}
-    </>
+      <section className="h-full w-full flex flex-row gap-x-2">
+        <LeftPanel />
+        
+        <main className="w-full bg-gray-200 rounded-tl-2xl p-3">
+          {children}
+        </main>
+      </section>
+    </div>
   )
 }
