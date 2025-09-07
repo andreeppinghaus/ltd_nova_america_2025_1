@@ -1,3 +1,4 @@
+import { Button } from "@/lib/components/button";
 import { LabelledInput } from "@/lib/components/input";
 import { Logo } from "@/lib/components/logo";
 import { Metadata } from "next";
@@ -27,9 +28,9 @@ export default function LoginPage() {
         <LabelledInput placeholder="Email" type="email" name="email" id="email" />
         <LabelledInput placeholder="Senha" type="password" name="password" id="password" />
         
-        <button className="bg-btn text-btn-content w-full hover:bg-btn-hover hover:text-btn-hover-content text-white text-center px-5 py-3 mt-3 mb-2 rounded-xl" type="submit">
+        <Button type="submit">
           Entrar
-        </button>
+        </Button>
       </form>
     </div>
   );
